@@ -73,7 +73,7 @@ public class WebSocketsServer
         {
             foreach (var client in _clients)
             {
-                if (client != excludeSocket && client.State == WebSocketState.Open)
+                if (client.State == WebSocketState.Open)
                 {
                     client.SendAsync(segment, WebSocketMessageType.Text, true, CancellationToken.None);
                 }

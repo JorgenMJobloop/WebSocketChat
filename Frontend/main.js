@@ -6,12 +6,17 @@ const sendButton = document.getElementById("send-message");
 // default connection for the Websocket server running on the backend.
 const websocket = new WebSocket("ws://localhost:5000/chat");
 
-websocket.onmessage = function (event) {
+
+websocket.onmessage = (event) => {
+    printMessageInFrontendChat(event);
+};
+
+function printMessageInFrontendChat(event) {
     const element = document.createElement("div");
-    element.textContent = event.value;
+    element.textContent = event.data;
     chat.appendChild(element);
     chat.scrollTop = chat.scrollHeight;
-};
+}
 
 sendButton.addEventListener("click", () => {
     if (message.value.trim()) {
